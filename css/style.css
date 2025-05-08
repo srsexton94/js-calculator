@@ -1,7 +1,8 @@
 :root {
-  --silver: #bfc0c0;
+  --silver: #d1d1d1;
   --coral: #ef8354;
   --violet: #6c596e;
+  --buttonSize: 6rem;
 }
 
 * {
@@ -33,13 +34,85 @@ h1 span:last-child {
 /* CALCULATOR */
 
 main {
-  border: 1px solid black;
   min-height: 80vh;
-  width: 20rem;
+  width: 95vw;
   margin: 2rem auto;
   padding: 2rem;
 }
 
 #display {
+  text-align: right;
   border-bottom: 0.5rem solid black;
+  margin-bottom: 2rem;
+}
+
+#display p {
+  margin: 0;
+}
+
+.secondary-display {
+  font-size: 2rem;
+}
+
+.primary-display {
+  font-size: 6rem;
+}
+
+#buttons {
+  display: flex;
+}
+
+button {
+  height: var(--buttonSize);
+  width: var(--buttonSize);
+  font-size: 4rem;
+  font-family: "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode",
+    Geneva, Verdana, sans-serif;
+  border-radius: 1rem;
+  background-color: var(--silver);
+}
+
+#reset {
+  width: calc(var(--buttonSize) * 3);
+  height: calc(var(--buttonSize) / 2);
+  margin-left: 1rem;
+  font-size: 2rem;
+}
+
+#numbers {
+  display: grid;
+  grid-template-columns: repeat(3, var(--buttonSize));
+  grid-template-rows: repeat(4, var(--buttonSize));
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  margin-right: 2rem;
+}
+
+#operators {
+  display: grid;
+  grid-template-columns: repeat(1, var(--buttonSize));
+  grid-template-rows: repeat(5, var(--buttonSize));
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 31em) {
+  #buttons {
+    flex-flow: column;
+    align-items: center;
+  }
+
+  #operators {
+    grid-template-columns: repeat(4, var(--buttonSize));
+    grid-column-gap: 0.5rem;
+    grid-row-gap: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  #equals {
+    width: calc(var(--buttonSize) * 4);
+    margin-left: 0.75rem;
+  }
 }
