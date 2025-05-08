@@ -1,0 +1,45 @@
+:root {
+  --silver: #bfc0c0;
+  --coral: #ef8354;
+  --violet: #6c596e;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: first baseline;
+}
+img {
+  height: 8rem;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h1 span:first-child {
+  color: var(--violet);
+}
+h1 span:last-child {
+  color: var(--coral);
+}
+
+/* CALCULATOR */
+
+main {
+  border: 1px solid black;
+  min-height: 80vh;
+  width: 20rem;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+#display {
+  border-bottom: 0.5rem solid black;
+}
