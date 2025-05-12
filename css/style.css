@@ -35,7 +35,7 @@ h1 span:last-child {
 
 main {
   min-height: 80vh;
-  width: 95vw;
+  width: 32rem;
   margin: 2rem auto;
   padding: 2rem;
 }
@@ -99,6 +99,9 @@ button {
 /* MEDIA QUERIES */
 
 @media only screen and (max-width: 31em) {
+  main {
+    width: 28rem;
+  }
   #buttons {
     flex-flow: column;
     align-items: center;
