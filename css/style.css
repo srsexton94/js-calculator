@@ -10,6 +10,10 @@
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
+body {
+  background-image: url(../assets/white_background.jpg);
+}
+
 /* HEADER */
 header {
   display: flex;
@@ -36,7 +40,7 @@ h1 span:last-child {
 main {
   min-height: 80vh;
   width: 32rem;
-  margin: 2rem auto;
+  margin: 0 auto 2rem;
   padding: 2rem;
 }
 
@@ -69,7 +73,14 @@ button {
   font-family: "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode",
     Geneva, Verdana, sans-serif;
   border-radius: 1rem;
-  background-color: var(--silver);
+  border-color: var(--silver);
+}
+
+button:hover,
+button:focus {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 4px 12px;
+  transform: translateY(-1px);
+  cursor: pointer;
 }
 
 #reset {
@@ -88,12 +99,20 @@ button {
   margin-right: 2rem;
 }
 
+#numbers button {
+  color: var(--coral);
+}
+
 #operators {
   display: grid;
   grid-template-columns: repeat(1, var(--buttonSize));
   grid-template-rows: repeat(5, var(--buttonSize));
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
+}
+
+#operators button {
+  color: var(--violet);
 }
 
 /* MEDIA QUERIES */
