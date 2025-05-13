@@ -10,11 +10,11 @@ function subtract(num1 = 0, num2 = 0) {
   return num1 - num2;
 }
 
-function multiply(num1 = 0, num2 = 0) {
+function multiply(num1 = 1, num2 = 1) {
   return num1 * num2;
 }
 
-function divide(num1 = 0, num2 = 0) {
+function divide(num1 = 1, num2 = 1) {
   return num1 / num2;
 }
 
@@ -22,6 +22,13 @@ const CALCULATIONS = { add, subtract, multiply, divide };
 const SYMBOLS = { add: "+", subtract: "-", multiply: "x", divide: "/" };
 
 // DISPLAY ACTIONS
+
+function showError() {
+  const mainEl = document.getElementsByTagName("main")[0];
+
+  mainEl.classList.add("shake");
+  setTimeout(() => mainEl.classList.remove("shake"), 250);
+}
 
 function render() {
   const [secondaryDisplay, primaryDisplay] =
@@ -39,22 +46,42 @@ function render() {
 // INPUT ACTIONS
 
 function onNumberPress(event) {
-  const digit = event.target.innerText;
+  let digit = event.target.innerText;
+
+  const handleDecimals = (operand) => {
+    if (digit === ".") {
+      if (operand.includes(".")) {
+        showError();
+        return "";
+      } else {
+        return "0.";
+      }
+    } else {
+      return digit;
+    }
+  };
 
   if (hasJustRan) {
     operand1 = digit;
     hasJustRan = false;
   } else {
     if (!operator) {
-      operand1 += digit;
+      operand1 += handleDecimals(operand1);
     } else {
-      operand2 += digit;
+      operand2 += handleDecimals(operand2);
     }
   }
   render();
 }
 
 function onOperatorPress(event) {
+  if (operator && !operand2) {
+    showError();
+    return;
+  } else if (operator) {
+    operand1 = calculate();
+    operand2 = "";
+  }
   operator = event.target.getAttribute("aria-label");
   hasJustRan = false;
   render();
@@ -69,7 +96,15 @@ function clearCalculator() {
 }
 
 function calculate() {
-  operand1 = CALCULATIONS[operator](parseFloat(operand1), parseFloat(operand2));
+  return CALCULATIONS[operator](parseFloat(operand1), parseFloat(operand2));
+}
+
+function onEquals() {
+  if (!operand1 || !operator || !operand2) {
+    showError();
+    return;
+  }
+  operand1 = calculate();
   operand2 = "";
   operator = "";
   hasJustRan = true;
@@ -88,6 +123,6 @@ document.querySelectorAll("button.operator").forEach((element) => {
 
 document.getElementById("reset").addEventListener("click", clearCalculator);
 
-document.getElementById("equals").addEventListener("click", calculate);
+document.getElementById("equals").addEventListener("click", onEquals);
 
 clearCalculator();
