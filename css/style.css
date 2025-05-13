@@ -57,12 +57,12 @@ main {
 
 .secondary-display {
   font-size: 2rem;
-  min-height: 2.5rem;
+  min-height: 3rem;
 }
 
 .primary-display {
   font-size: 6rem;
-  min-height: 6.5rem;
+  min-height: 7rem;
 }
 
 #buttons {
@@ -87,13 +87,10 @@ button:focus {
 }
 
 #reset {
-  width: calc(var(--buttonSize) * 3);
-  height: calc(var(--buttonSize) / 2);
-  margin-left: 1rem;
   font-size: 2rem;
 }
 
-#numbers {
+#numberPad {
   display: grid;
   grid-template-columns: repeat(3, var(--buttonSize));
   grid-template-rows: repeat(4, var(--buttonSize));
@@ -102,7 +99,7 @@ button:focus {
   margin-right: 2rem;
 }
 
-#numbers button {
+#numberPad button {
   color: var(--coral);
 }
 
