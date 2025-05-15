@@ -51,8 +51,10 @@ function onNumberPress(digit) {
       if (operand.includes(".")) {
         showError();
         return "";
-      } else {
+      } else if (operand.length === 0) {
         return "0.";
+      } else {
+        return ".";
       }
     } else {
       return digit;
@@ -111,15 +113,13 @@ function onEquals() {
 
 // EVENT LISTENERS
 
-document
-  .getElementById("numbers")
-  .addEventListener("click", function (event) {
-    if (event.target.id === "reset") {
-      clearCalculator();
-    } else {
-      onNumberPress(event.target.innerText);
-    }
-  });
+document.getElementById("numbers").addEventListener("click", function (event) {
+  if (event.target.id === "reset") {
+    clearCalculator();
+  } else {
+    onNumberPress(event.target.innerText);
+  }
+});
 document
   .getElementById("operators")
   .addEventListener("click", function (event) {
