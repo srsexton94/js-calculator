@@ -45,9 +45,7 @@ function render() {
 
 // INPUT ACTIONS
 
-function onNumberPress(event) {
-  let digit = event.target.innerText;
-
+function onNumberPress(digit) {
   const handleDecimals = (operand) => {
     if (digit === ".") {
       if (operand.includes(".")) {
@@ -113,16 +111,23 @@ function onEquals() {
 
 // EVENT LISTENERS
 
-document.querySelectorAll("button.number").forEach((element) => {
-  element.addEventListener("click", onNumberPress);
-});
-
-document.querySelectorAll("button.operator").forEach((element) => {
-  element.addEventListener("click", onOperatorPress);
-});
-
-document.getElementById("reset").addEventListener("click", clearCalculator);
-
-document.getElementById("equals").addEventListener("click", onEquals);
+document
+  .getElementById("numbers")
+  .addEventListener("click", function (event) {
+    if (event.target.id === "reset") {
+      clearCalculator();
+    } else {
+      onNumberPress(event.target.innerText);
+    }
+  });
+document
+  .getElementById("operators")
+  .addEventListener("click", function (event) {
+    if (event.target.id === "equals") {
+      onEquals();
+    } else {
+      onOperatorPress(event);
+    }
+  });
 
 clearCalculator();
